@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="deschide_activitate">Deschide activitate</string>
+    <string name="app_name">seminar04</string>
+    <string name="salut_ce_faci">Salut...ce faci?</string>
+    <string name="exemplu_ion">exempluion</string>
+    <string name="apasa">apasa</string>
+    <string name="curcan_american">curcan_american</string>
 </resources>
