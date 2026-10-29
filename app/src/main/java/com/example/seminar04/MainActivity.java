@@ -13,9 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<Intent> launcher;
+    private ActivityResultLauncher<Intent> launcherLista;
+    private ArrayList<Curcani> listaCurcani = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +31,22 @@ public class MainActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-
                         Curcani curcanPrimit = (Curcani) result.getData().getSerializableExtra("obiect_curcan");
-
                         if (curcanPrimit != null) {
+                            listaCurcani.add(curcanPrimit);
+                            Toast.makeText(MainActivity.this, "Curcan adăugat!\n" + curcanPrimit.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
 
-                            Toast.makeText(MainActivity.this, curcanPrimit.toString(), Toast.LENGTH_LONG).show();
+        launcherLista = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        ArrayList<Curcani> listaActualizata = (ArrayList<Curcani>) result.getData().getSerializableExtra("lista_curcani_actualizata");
+                        if (listaActualizata != null) {
+                            listaCurcani = listaActualizata;
                         }
                     }
                 }
@@ -45,13 +59,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     public void culegeDate(View view) {
         Intent intent = new Intent(MainActivity.this, FormularActivity.class);
         launcher.launch(intent);
     }
+
     public void culegeDateAi(View view) {
         Intent intent = new Intent(MainActivity.this, FormularAiActivity.class);
         launcher.launch(intent);
+    }
+
+    public void afiseazaLista(View view) {
+        Intent intent = new Intent(MainActivity.this, ListaActivity.class);
+        intent.putExtra("lista_curcani", listaCurcani);
+        launcherLista.launch(intent);
+    }
+
+    public void deschideActivitateNoua(View view) {
+        Intent intent = new Intent(MainActivity.this, ActivitateNoua.class);
+        startActivity(intent);
     }
 }

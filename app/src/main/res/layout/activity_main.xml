@@ -31,9 +31,23 @@
         android:text="@string/apasa" />
     <Button
         android:id="@+id/btnDeschideAi"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Adaugă cu AI"
         android:onClick="culegeDateAi" />
+
+    <Button
+        android:id="@+id/btnDeschideActivitateNoua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/deschide_activitate_noua"
+        android:onClick="deschideActivitateNoua" />
+
+    <Button
+        android:id="@+id/btnAfiseazaLista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/afiseaza_lista"
+        android:onClick="afiseazaLista" />
 
 </LinearLayout>

@@ -4,4 +4,8 @@
     <string name="exemplu_ion">exempluion</string>
     <string name="apasa">apasa</string>
     <string name="curcan_american">curcan_american</string>
+    <string name="deschide_activitate">Deschide activitate</string>
+    <string name="deschide_activitate_noua">Deschide Activitate Nouă</string>
+    <string name="afiseaza_lista">Afișează Lista Curcani</string>
+    <string name="titlu_lista_curcani">Lista Curcani Adăugați</string>
 </resources>
