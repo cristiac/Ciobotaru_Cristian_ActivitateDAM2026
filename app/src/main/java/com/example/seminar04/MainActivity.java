@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        Curcani curcanPrimit = (Curcani) result.getData().getSerializableExtra("obiect_curcan");
+                        Curcani curcanPrimit = result.getData().getParcelableExtra("obiect_curcan");
                         if (curcanPrimit != null) {
                             listaCurcani.add(curcanPrimit);
                             Toast.makeText(MainActivity.this, "Curcan adăugat!\n" + curcanPrimit.toString(), Toast.LENGTH_LONG).show();
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        ArrayList<Curcani> listaActualizata = (ArrayList<Curcani>) result.getData().getSerializableExtra("lista_curcani_actualizata");
+                        ArrayList<Curcani> listaActualizata = result.getData().getParcelableArrayListExtra("lista_curcani_actualizata");
                         if (listaActualizata != null) {
                             listaCurcani = listaActualizata;
                         }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void afiseazaLista(View view) {
         Intent intent = new Intent(MainActivity.this, ListaActivity.class);
-        intent.putExtra("lista_curcani", listaCurcani);
+        intent.putParcelableArrayListExtra("lista_curcani", listaCurcani);
         launcherLista.launch(intent);
     }
 

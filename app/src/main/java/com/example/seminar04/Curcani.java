@@ -1,8 +1,9 @@
 package com.example.seminar04;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Curcani implements Serializable {
+public class Curcani implements Parcelable {
     private String rasa;
     private boolean esteMatur;
     private String tipHrana;
@@ -17,6 +18,42 @@ public class Curcani implements Serializable {
         this.esteMasculin = esteMasculin;
         this.notaSanatate = notaSanatate;
         this.esteVaccinat = esteVaccinat;
+    }
+
+    protected Curcani(Parcel in) {
+        rasa = in.readString();
+        esteMatur = in.readByte() != 0;
+        tipHrana = in.readString();
+        esteMasculin = in.readByte() != 0;
+        notaSanatate = in.readFloat();
+        esteVaccinat = in.readByte() != 0;
+    }
+
+    public static final Creator<Curcani> CREATOR = new Creator<Curcani>() {
+        @Override
+        public Curcani createFromParcel(Parcel in) {
+            return new Curcani(in);
+        }
+
+        @Override
+        public Curcani[] newArray(int size) {
+            return new Curcani[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(rasa);
+        dest.writeByte((byte) (esteMatur ? 1 : 0));
+        dest.writeString(tipHrana);
+        dest.writeByte((byte) (esteMasculin ? 1 : 0));
+        dest.writeFloat(notaSanatate);
+        dest.writeByte((byte) (esteVaccinat ? 1 : 0));
     }
 
     public String getRasa() {
@@ -72,7 +109,7 @@ public class Curcani implements Serializable {
         return "Rasă: " + rasa +
                 " | Matur: " + (esteMatur ? "Da" : "Nu") +
                 " | Hrană: " + tipHrana +
-                " | Mascul: " + (esteMasculin ? "Da" : "Nu") +
+                " | Gen: " + (esteMasculin ? "Mascul" : "Femelă") +
                 " | Sănătate: " + notaSanatate + "/5" +
                 " | Vaccinat: " + (esteVaccinat ? "Da" : "Nu");
     }
