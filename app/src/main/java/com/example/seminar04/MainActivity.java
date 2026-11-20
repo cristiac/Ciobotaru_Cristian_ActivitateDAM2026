@@ -79,4 +79,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ActivitateNoua.class);
         startActivity(intent);
     }
+
+    public void deschideGalerieImagini(View view) {
+        Intent intent = new Intent(MainActivity.this, ImaginiActivity.class);
+        startActivity(intent);
+    }
 }

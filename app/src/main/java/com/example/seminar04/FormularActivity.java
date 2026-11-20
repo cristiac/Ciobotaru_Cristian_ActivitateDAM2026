@@ -33,7 +33,6 @@ public class FormularActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, optiuniHrana);
         spHrana.setAdapter(adapter);
 
-        // Cerința 3: Verificare dacă s-a transmis un obiect pentru modificare
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("obiect_editat")) {
             Curcani curcanDeEditat = intent.getParcelableExtra("obiect_editat");

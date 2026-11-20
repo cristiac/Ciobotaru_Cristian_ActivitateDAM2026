@@ -45,7 +45,7 @@ public class FormularAiActivity extends AppCompatActivity {
             cbMatur.setChecked(random.nextBoolean());
             spHrana.setSelection(random.nextInt(optiuniHrana.length));
             rbMasculin.setChecked(random.nextBoolean());
-            rbSanatate.setRating(random.nextInt(3) + 3); // 3, 4 sau 5 stele
+            rbSanatate.setRating(random.nextInt(3) + 3);
             swVaccinat.setChecked(true);
 
             tvAiStatus.setText("Status AI: Preset generat cu succes! 🎯");

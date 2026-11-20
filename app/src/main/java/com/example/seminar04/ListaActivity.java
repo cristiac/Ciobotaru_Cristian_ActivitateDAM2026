@@ -45,11 +45,9 @@ public class ListaActivity extends AppCompatActivity {
             listaCurcani = new ArrayList<>();
         }
 
-        // Cerința 2: Adapter personalizat (CurcanAdapter cu row_curcan.xml)
         adapter = new CurcanAdapter(this, R.layout.row_curcan, listaCurcani);
         lvCurcani.setAdapter(adapter);
 
-        // Launcher pentru primirea modificărilor din FormularActivity
         editLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -58,7 +56,6 @@ public class ListaActivity extends AppCompatActivity {
                         int pozitie = result.getData().getIntExtra("pozitie", -1);
 
                         if (curcanModificat != null && pozitie != -1 && pozitie < listaCurcani.size()) {
-                            // Modificăm obiectul selectat pe poziția primită, fără a adăuga unul nou
                             listaCurcani.set(pozitie, curcanModificat);
                             adapter.notifyDataSetChanged();
                             Toast.makeText(ListaActivity.this, "Curcan modificat cu succes!", Toast.LENGTH_SHORT).show();
@@ -67,7 +64,6 @@ public class ListaActivity extends AppCompatActivity {
                 }
         );
 
-        // Cerința 3: La ItemClick se deschide activitatea de introducere date cu informațiile obiectului selectat
         lvCurcani.setOnItemClickListener((parent, view, position, id) -> {
             Curcani curcanDeEditat = listaCurcani.get(position);
             Intent editIntent = new Intent(ListaActivity.this, FormularActivity.class);
@@ -76,7 +72,6 @@ public class ListaActivity extends AppCompatActivity {
             editLauncher.launch(editIntent);
         });
 
-        // Eveniment de LongItemClick pentru ștergere
         lvCurcani.setOnItemLongClickListener((parent, view, position, id) -> {
             Curcani curcanSters = listaCurcani.remove(position);
             adapter.notifyDataSetChanged();

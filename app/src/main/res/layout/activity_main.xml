@@ -50,4 +50,11 @@
         android:text="@string/afiseaza_lista"
         android:onClick="afiseazaLista" />
 
+    <Button
+        android:id="@+id/btnDeschideGalerie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/deschide_galerie_imagini"
+        android:onClick="deschideGalerieImagini" />
+
 </LinearLayout>
